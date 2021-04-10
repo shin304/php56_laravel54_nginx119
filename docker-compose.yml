@@ -1,0 +1,50 @@
+version: "3"
+services:
+  nginx:
+    build:
+      context: ./build/nginx
+      dockerfile: Dockerfile
+    container_name: my_nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./source:/usr/share/nginx/html
+      - ./build/nginx/default.conf:/etc/nginx/conf.d/default.conf
+
+  php-fpm:
+    build:
+      context: ./build/php-fpm
+      dockerfile: Dockerfile
+    container_name: my_php-fpm
+    expose:
+      - 9002
+    volumes:
+      - ./source:/var/www/html
+      - ./build/php-fpm/php.ini:/usr/local/etc/php/php.ini
+
+  mysql:
+    build:
+      context: ./build/mysql
+      dockerfile: Dockerfile
+    container_name: my_mysql
+    expose:
+      - 3306
+    ports:
+      - 3306::3306
+    environment:
+      MYSQL_DATABASE: laravel_local
+      MYSQL_USER: shinno
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      TZ: Asia/Tokyo
+    volumes:
+      - db_data:/var/lib/mysql
+
+  redis:
+    image: redis:latest
+    container_name: my_redis
+    ports:
+      - 6379:6379
+
+volumes:
+  db_data:
