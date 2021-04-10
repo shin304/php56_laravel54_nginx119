@@ -1,11 +1,5 @@
 # php56_laravel54_nginx119
 
-## description
-
-```
-kaiinkanriシステムの環境を想定したDocker環境
-```
-
 ## Requirements
 
 - nginx 1.19
@@ -13,8 +7,10 @@ kaiinkanriシステムの環境を想定したDocker環境
 - mysql 5.5
 - redis latest
 
+## description
+
+kaiinkanri システムの環境を想定した Docker 環境
+
 ## Usage
 
-```
-実際の開発環境では行うことができない、モジュールのインストール・検証や、Xdebugの設定などを実験的に行う
-```
+実際の開発環境では行うことができない、モジュールのインストール・検証や、Xdebug の設定などを実験的に行う
